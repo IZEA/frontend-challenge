@@ -48,6 +48,7 @@ The application runs on Rails 7, the following pre requisites should get the app
 - Ruby version 3.2.2
 - Postgressql v14 or greater
 - Redis v6
+- yarn
 
 ### Installing Ruby:
 
@@ -87,8 +88,13 @@ The application runs on Rails 7, the following pre requisites should get the app
 - [MacOS](https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/)
 - [Linux](https://redis.io/docs/getting-started/installation/install-redis-on-linux/)
 
+### Installing yarn
+
+- `npm install -g yarn`
+
 ### Running Application
 
+- run `yarn install`
 - run `./bin/setup` - should setup database locally
 - run `./bin/dev` - to start processes (server, assets watching)
 - navigate to your browser at `localhost:3000`
