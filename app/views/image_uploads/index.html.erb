@@ -1,0 +1,11 @@
+<%= form_for @image_upload, html: { multipart: true } do |form| %>
+  <%= form.file_field :file %>
+
+  <%= form.submit "Upload" %>
+<% end %>
+
+<div class="image-container">
+  <% @image_uploads.each do |image_upload|%>
+    <img src="<%= image_upload.file_path %>" />
+  <% end %>
+</div>
