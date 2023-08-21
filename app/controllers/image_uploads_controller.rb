@@ -12,11 +12,22 @@ class ImageUploadsController < ApplicationController
     if uploaded
       redirect_to root_path
     else
-      
+
     end
   end
 
-private 
+  def destroy
+    @image_upload = ImageUpload.find(params[:id])
+    destroyed = @image_upload.destroy
+
+    if destroyed
+      redirect_to root_path, notice: 'Image was deleted.'
+    else
+
+    end
+  end
+
+private
 
   def image_upload_params
     params.require(:image_upload).permit(:file)

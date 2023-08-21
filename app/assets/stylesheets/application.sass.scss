@@ -1,18 +1,71 @@
 // Entry point for your Sass build
 
-/** 
+/**
  Refactor Me Please
 */
-.image-container {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: auto;
-  row-gap: 10px;
-  column-gap: 10px;
 
-  img {
-    width: 100px;
-    height: 100px;
-  }
+// fonts
+$font: Helvetica, sans-serif;
+
+// font weights
+$light: 300;
+$normal: 400;
+$semibold: 500;
+$bold: 700;
+
+// colors
+$txt-primary: #000;
+$txt-danger: #ff0000;
+
+.header {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+    font-family: $font;
+    font-weight: $light;
+    color: $txt-primary;
+    letter-spacing: 1px;
+}
+
+.gallery-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    row-gap: 30px;
+    column-gap: 30px;
+}
+
+.image-container {
+    display: grid;
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.delete-button {
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 4px;
+    text-align: center;
+    transform: translate(0%, 0%);
+    // visibility: hidden;
+    // transition: visibility 0.2s ease-in-out;
+    // :hover {
+    //     visibility: visible;
+    // }
 }
