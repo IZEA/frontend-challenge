@@ -12,7 +12,7 @@ class ImageUploadsController < ApplicationController
     if uploaded
       redirect_to root_path
     else
-
+      redirect_to root_path, notice: 'Image was not uploaded.'
     end
   end
 
@@ -21,9 +21,13 @@ class ImageUploadsController < ApplicationController
     destroyed = @image_upload.destroy
 
     if destroyed
-      redirect_to root_path, notice: 'Image was deleted.'
+         flash[:notice] = 'Image was deleted.'
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+    end
     else
-
+      redirect_to root_path, notice: 'Image was not deleted.'
     end
   end
 

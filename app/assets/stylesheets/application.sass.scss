@@ -1,13 +1,5 @@
-// Entry point for your Sass build
-
-/**
- Refactor Me Please
-*/
-
-// fonts
+// fonts and font weights
 $font: Helvetica, sans-serif;
-
-// font weights
 $light: 300;
 $normal: 400;
 $semibold: 500;
@@ -17,10 +9,14 @@ $bold: 700;
 $txt-primary: #000;
 $txt-danger: #ff0000;
 
-.header {
+@mixin center-align {
     display: grid;
     justify-content: center;
     align-items: center;
+}
+
+.header {
+    @include center-align;
     text-align: center;
     margin-top: 100px;
     font-family: $font;
@@ -30,16 +26,14 @@ $txt-danger: #ff0000;
 }
 
 .gallery-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    @include center-align;
     margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 100px);
-    grid-template-rows: auto;
     justify-content: center;
     align-items: center;
     margin-top: 30px;
@@ -49,7 +43,6 @@ $txt-danger: #ff0000;
 
 .image-container {
     display: grid;
-
     img {
         width: 100px;
         height: 100px;
@@ -65,7 +58,7 @@ $txt-danger: #ff0000;
     transform: translate(0%, 0%);
     // visibility: hidden;
     // transition: visibility 0.2s ease-in-out;
-    // :hover {
+    // &:hover {
     //     visibility: visible;
     // }
 }

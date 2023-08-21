@@ -11,7 +11,7 @@ class ImageUpload < ApplicationRecord
   def upload
     self.file_path = "#{SRC_DIR}/#{multipart_file_data.original_filename}"
     file = File.new(Rails.root.join('public', file_path), 'w')
-  
+
     file.write(multipart_file_data.read.force_encoding("UTF-8"))
 
     save!

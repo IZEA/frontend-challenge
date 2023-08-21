@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "image_uploads#index"
 
-  resources :image_uploads, only: %i[index create destroy]
+  resources :image_uploads, only: [:index, :create, :destroy]
 end
