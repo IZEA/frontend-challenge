@@ -7,6 +7,8 @@ $bold: 700;
 
 // colors
 $txt-primary: #000;
+$txt-secondary: #222222;
+$txt-light: #575757;
 $txt-danger: #ff0000;
 
 @mixin center-align {
@@ -23,12 +25,20 @@ $txt-danger: #ff0000;
     font-weight: $light;
     color: $txt-primary;
     letter-spacing: 1px;
+
+    h2 {
+        color: $txt-primary;
+    }
+
+    p {
+        color: $txt-secondary;
+    }
 }
 
 .gallery-container {
     @include center-align;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .gallery {
@@ -42,23 +52,51 @@ $txt-danger: #ff0000;
 }
 
 .image-container {
-    display: grid;
+    position: relative;
+    display: inline-block;
     img {
         width: 100px;
         height: 100px;
     }
 }
 
-.delete-button {
+// delete button hover
+.image-overlay {
+    @include center-align;
+    position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 4px;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.image-container:hover .image-overlay {
+    opacity: 1;
+    height: 100px;
+    width: 100px;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
     text-align: center;
-    transform: translate(0%, 0%);
-    // visibility: hidden;
-    // transition: visibility 0.2s ease-in-out;
-    // &:hover {
-    //     visibility: visible;
-    // }
+}
+
+.bottom-text {
+    @include center-align;
+    text-align: center;
+    margin-top: 40px;
+    font-family: $font;
+    font-weight: $light;
+    font-size: small;
+    color: $txt-light;
+    letter-spacing: 1px;
 }
