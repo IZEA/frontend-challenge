@@ -1,11 +1,21 @@
-<%= form_for @image_upload, html: { multipart: true } do |form| %>
-  <%= form.file_field :file %>
-
-  <%= form.submit "Upload" %>
-<% end %>
-
-<div class="image-container">
-  <% @image_uploads.each do |image_upload|%>
-    <img src="<%= image_upload.file_path %>" />
+<div class="form-container">
+  <div class="form-header">
+    <h1>Upload sample media.</h1>
+    <p>Your sample media is your best chance to make a great first impression.</p>
+  </div>
+  <%= form_for @image_upload, html: { id: 'image-upload-form', data: { 'turbo-frame': 'self' } } do |form| %>
+    <div class="custom-file-upload">
+      <%= form.file_field :file, id: 'file-input', class: 'hidden-file-input', direct_upload: true %>
+      <label for="file-input" class="custom-file-button">
+        <%= image_tag 'svgs/plus.svg', class: 'icon-upload', alt: 'Upload Icon' %>
+        Click to Upload files
+      </label>
+    </div>
   <% end %>
+  <div class="image-container">
+    <% @image_uploads.each do |image_upload| %>
+      <%= render 'image_upload', image_upload: image_upload %>
+    <% end %>
+  </div>
+  <p>Maximum of 10.</p>
 </div>

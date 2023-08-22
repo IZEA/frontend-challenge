@@ -307,6 +307,7 @@ __metadata:
   resolution: "app@workspace:."
   dependencies:
     "@hotwired/stimulus": ^3.2.2
+    "@hotwired/turbo": ^7.3.0
     "@hotwired/turbo-rails": ^7.3.0
     esbuild: ^0.19.2
     sass: ^1.65.1
