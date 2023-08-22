@@ -1,0 +1,8 @@
+<div class="image-wrapper" id="image_<%= image_upload.id %>">
+  <%= link_to image_upload_path(image_upload), data: { "turbo-method": :delete }, class: 'delete-link' do %>
+    <%= image_tag url_for(image_upload.file) %>
+    <div class="overlay">
+      <%= image_tag 'svgs/trash.svg', class: 'icon-trash', alt: 'Delete Icon' %>
+    </div>
+  <% end %>
+</div>
