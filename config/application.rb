@@ -35,5 +35,7 @@ module FrontendChallenge
     config.generators.system_tests = nil
 
     config.public_file_server.enabled = true
+
+    config.assets.precompile += %w( *.svg )
   end
 end

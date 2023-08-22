@@ -1,9 +1,14 @@
 // fonts and font weights
 $font: Helvetica, sans-serif;
+
 $light: 300;
 $normal: 400;
 $semibold: 500;
 $bold: 700;
+
+$x-small: 12px;
+$small: 14px;
+$half-space: 0.5px;
 
 // colors
 $txt-primary: #000;
@@ -24,14 +29,16 @@ $txt-danger: #ff0000;
     font-family: $font;
     font-weight: $light;
     color: $txt-primary;
-    letter-spacing: 1px;
+    letter-spacing: $half-space;
 
-    h2 {
+    h1 {
         color: $txt-primary;
+        font-weight: normal;
     }
 
     p {
         color: $txt-secondary;
+        font-size: $small;
     }
 }
 
@@ -83,20 +90,24 @@ $txt-danger: #ff0000;
     background: none;
     border: none;
     color: white;
-    padding: 8px 12px;
-    font-size: 14px;
     cursor: pointer;
     outline: none;
     text-align: center;
+}
+
+img.delete-icon {
+    height: 25px;
+    width: 25px;
 }
 
 .bottom-text {
     @include center-align;
     text-align: center;
     margin-top: 40px;
+    margin-bottom: 100px;
     font-family: $font;
     font-weight: $light;
-    font-size: small;
+    font-size: $x-small;
     color: $txt-light;
-    letter-spacing: 1px;
+    letter-spacing: $half-space;
 }

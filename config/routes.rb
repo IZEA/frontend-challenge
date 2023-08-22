@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :image_uploads
+  resources :image_uploads, only: [ :create, :destroy]
   root "image_uploads#index"
 end

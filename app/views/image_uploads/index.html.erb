@@ -1,28 +1,31 @@
 <div class="header">
-  <h2>Upload sample media.</h2>
+  <h1>Upload sample media</h1>
   <p>Your sample media is your best chance to make a great first impression.</p>
 </div>
 
+
 <div class="gallery-container">
   <%= form_for @image_upload, html: { multipart: true } do |form| %>
-    <%= form.file_field :file %>
-    <%= form.submit "Upload" %>
+    <%= form.file_field :file, data: { turbo_frame: "image_upload" } %>
+    <%= form.submit "Upload", data: { turbo: true } %>
   <% end %>
 
-  <div class="gallery">
-    <% @image_uploads.each do |image|%>
-      <%= turbo_frame_tag dom_id(image) do %>
-        <div class="image-container">
-          <img src="<%= image.file_path %>" />
-          <div class="image-overlay">
-            <%= button_to "Delete", image, method: :delete, class: "delete-button" %>
-          </div>
+    <div class="gallery" data-turbo-frame="image_upload">
+      <% @image_uploads.first(10).each do |image|%>
+        <div class="image-container" id="image_<%= image.id %>">
+          <%= turbo_frame_tag dom_id(image) do %>
+            <img src="<%= image.file_path %>" />
+            <div class="image-overlay">
+              <%= button_to image, method: :delete, class: "delete-button", remote: true, data: { turbo_frame: "_top" } do %>
+                <%= image_tag "svgs/trash.svg", alt: "Delete Image", class: "delete-icon" %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
 
 <div class="bottom-text">
-  <p>Maximum of 10.</p>
+  <p>Maximum of 10</p>
 </div>

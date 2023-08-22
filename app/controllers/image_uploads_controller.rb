@@ -20,12 +20,14 @@ class ImageUploadsController < ApplicationController
     @image_upload = ImageUpload.find(params[:id])
     destroyed = @image_upload.destroy
 
-    if destroyed
-         flash[:notice] = 'Image was deleted.'
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.js
+  if destroyed
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.turbo_stream do
+        turbo_stream.remove(@image_upload)
+      end
     end
+
     else
       redirect_to root_path, notice: 'Image was not deleted.'
     end
