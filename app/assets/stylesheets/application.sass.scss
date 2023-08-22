@@ -22,6 +22,12 @@ $txt-danger: #ff0000;
     align-items: center;
 }
 
+@mixin img-center {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
 .header {
     @include center-align;
     text-align: center;
@@ -59,11 +65,16 @@ $txt-danger: #ff0000;
 }
 
 .image-container {
+    @include img-center;
     position: relative;
-    display: inline-block;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+
     img {
-        width: 100px;
-        height: 100px;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
     }
 }
 
