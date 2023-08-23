@@ -60,50 +60,9 @@ body {
     margin-bottom: 40px;
 }
 
-.select-images-btn {
-    display: inline-block;
-    width: 300px;
-    height: 50px;
-    line-height: 50px;
-    background-color: $btn-upload;
-    color: $btn-upload-txt;
-    font-weight: $light;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    outline: 2px dashed $btn-upload;
-    outline-offset: 5px;
-
-    &:hover {
-        background-color: $btn-upload-txt;
-        color: $btn-upload;
-        outline: 2px dashed $btn-upload-txt;
-        outline-offset: 5px;
-    }
-
-    &:active {
-        background-color: $btn-upload-active;
-        outline: 2px dashed $btn-upload-active;
-        outline-offset: 5px;
-    }
-}
-
 .file-name {
     color: $txt-secondary;
     font-size: $small;
-}
-
-.confirm-btn {
-    background-color: $btn-upload;
-    color: $btn-upload-txt;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-}
-
-#upload-button.hidden {
-    display: none;
 }
 
 #img-upload {
@@ -134,7 +93,101 @@ body {
     }
 }
 
-// delete button
+.bottom-text {
+    @include center-align;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    font-weight: $light;
+    font-size: $x-small;
+    color: $txt-light;
+    letter-spacing: $half-space;
+}
+
+// BUTTONS
+
+// select file
+
+.select-images-btn {
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    background-color: $btn-upload;
+    color: $btn-upload-txt;
+    font-weight: $light;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: 2px dashed $btn-upload;
+    outline-offset: 5px;
+
+    &:hover {
+        background-color: $btn-upload-txt;
+        color: $btn-upload;
+        outline: 2px dashed $btn-upload-txt;
+        outline-offset: 5px;
+    }
+
+    &:active {
+        background-color: $btn-upload-active;
+        outline: 2px dashed $btn-upload-active;
+        outline-offset: 5px;
+    }
+}
+
+.plus-icon {
+    width: 15px;
+    height: 15px;
+    stroke: $btn-upload-txt;
+    stroke-width: 2;
+    margin-right: 10px;
+    transition: stroke 0.1s;
+}
+
+.button-content span {
+    color: $btn-upload-txt;
+    transition: color 0.1s;
+}
+
+.button-content:hover .plus-icon {
+    stroke: $btn-upload;
+}
+
+.button-content:hover span {
+    color: $btn-upload;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// confirm
+
+.confirm-btn {
+    background-color: $btn-upload;
+    color: $btn-upload-txt;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: $btn-upload-txt;
+        color: $btn-upload;
+    }
+
+    &:active {
+        background-color: $btn-upload-active;
+    }
+}
+
+#upload-button.hidden {
+    display: none;
+}
+
+//delete
 
 .image-overlay {
     @include center-align;
@@ -166,21 +219,4 @@ body {
 img.delete-icon {
     height: 25px;
     width: 25px;
-}
-
-img.plus-icon {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-.bottom-text {
-    @include center-align;
-    margin-top: 40px;
-    margin-bottom: 100px;
-    font-weight: $light;
-    font-size: $x-small;
-    color: $txt-light;
-    letter-spacing: $half-space;
 }
