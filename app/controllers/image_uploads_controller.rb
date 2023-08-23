@@ -4,19 +4,18 @@ class ImageUploadsController < ApplicationController
     @image_upload = ImageUpload.new
     @image_uploads = ImageUpload.all
 
-    # console.log(@image_uploads) getting NIL
-
     respond_to do |format|
       format.html
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(@image_uploads, partial: 'image_upload') }
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.append(@image_upload)
+      }
     end
-
   end
 
 
   def create
     image_upload = ImageUpload.new(image_upload_params)
-
+    puts turbo_stream.append(image_upload)
     if image_upload.save
         respond_to do |format|
             format.html { redirect_to root_path }
