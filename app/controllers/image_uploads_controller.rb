@@ -3,14 +3,27 @@ class ImageUploadsController < ApplicationController
   def index
     @image_upload = ImageUpload.new
     @image_uploads = ImageUpload.all
+
+    # console.log(@image_uploads) getting NIL
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(@image_uploads, partial: 'image_upload') }
+    end
+
   end
 
-  def create
-    image_upload = ImageUpload.new(multipart_file_data: image_upload_params[:file])
-    uploaded = image_upload.upload
 
-    if uploaded
-      redirect_to root_path
+  def create
+    image_upload = ImageUpload.new(image_upload_params)
+
+    if image_upload.save
+        respond_to do |format|
+            format.html { redirect_to root_path }
+            format.turbo_stream do
+                turbo_stream.append(image_upload)
+            end
+        end
     else
       redirect_to root_path, notice: 'Image was not uploaded.'
     end
@@ -33,9 +46,10 @@ class ImageUploadsController < ApplicationController
     end
   end
 
+end
+
 private
 
-  def image_upload_params
-    params.require(:image_upload).permit(:file)
-  end
+def image_upload_params
+  params.require(:image_upload).permit(:file)
 end

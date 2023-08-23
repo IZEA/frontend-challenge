@@ -63,7 +63,6 @@ The application runs on Rails 7, the following pre requisites should get the app
 
 ### Installing Postgres:
 
-- MacOS:
   - run `brew install postgresql@15`
 - Linux
 
