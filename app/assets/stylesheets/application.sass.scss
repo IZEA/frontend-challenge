@@ -1,18 +1,222 @@
-// Entry point for your Sass build
+// fonts and font weights
+$font: Helvetica, sans-serif;
 
-/** 
- Refactor Me Please
-*/
+$light: 300;
+$normal: 400;
+$semibold: 500;
+$bold: 700;
+
+$x-small: 12px;
+$small: 14px;
+$half-space: 0.5px;
+
+// colors
+$txt-primary: #000;
+$txt-secondary: #222222;
+$txt-light: #575757;
+$txt-danger: #ff0000;
+$btn-upload: #eef6f9;
+$btn-upload-txt: #44869e;
+$btn-upload-active: #21434f;
+
+@mixin center-align {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@mixin img-center {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+body {
+    font-family: $font;
+}
+
+.header {
+    @include center-align;
+    margin-top: 100px;
+    font-weight: $light;
+    color: $txt-primary;
+    letter-spacing: $half-space;
+
+    h1 {
+        color: $txt-primary;
+        font-weight: normal;
+    }
+
+    p {
+        color: $txt-secondary;
+        font-size: $small;
+    }
+}
+
+.gallery-container {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.file-name {
+    color: $txt-secondary;
+    font-size: $small;
+}
+
+#img-upload {
+    display: none;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    row-gap: 30px;
+    column-gap: 30px;
+}
+
 .image-container {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: auto;
-  row-gap: 10px;
-  column-gap: 10px;
-
-  img {
+    @include img-center;
+    position: relative;
     width: 100px;
     height: 100px;
-  }
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+}
+
+.bottom-text {
+    @include center-align;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    font-weight: $light;
+    font-size: $x-small;
+    color: $txt-light;
+    letter-spacing: $half-space;
+}
+
+// BUTTONS
+
+// select file
+
+.select-images-btn {
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    background-color: $btn-upload;
+    color: $btn-upload-txt;
+    font-weight: $light;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: 2px dashed $btn-upload;
+    outline-offset: 5px;
+
+    &:hover {
+        background-color: $btn-upload-txt;
+        color: $btn-upload;
+        outline: 2px dashed $btn-upload-txt;
+        outline-offset: 5px;
+    }
+
+    &:active {
+        background-color: $btn-upload-active;
+        outline: 2px dashed $btn-upload-active;
+        outline-offset: 5px;
+    }
+}
+
+.plus-icon {
+    width: 15px;
+    height: 15px;
+    stroke: $btn-upload-txt;
+    stroke-width: 2;
+    margin-right: 10px;
+    transition: stroke 0.1s;
+}
+
+.button-content span {
+    color: $btn-upload-txt;
+    transition: color 0.1s;
+}
+
+.button-content:hover .plus-icon {
+    stroke: $btn-upload;
+}
+
+.button-content:hover span {
+    color: $btn-upload;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// confirm
+
+.confirm-btn {
+    background-color: $btn-upload;
+    color: $btn-upload-txt;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: $btn-upload-txt;
+        color: $btn-upload;
+    }
+
+    &:active {
+        background-color: $btn-upload-active;
+    }
+}
+
+#upload-button.hidden {
+    display: none;
+}
+
+//delete
+
+.image-overlay {
+    @include center-align;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.image-container:hover .image-overlay {
+    opacity: 1;
+    height: 100px;
+    width: 100px;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+}
+
+img.delete-icon {
+    height: 25px;
+    width: 25px;
 }

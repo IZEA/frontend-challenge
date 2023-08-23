@@ -35,5 +35,11 @@ module FrontendChallenge
     config.generators.system_tests = nil
 
     config.public_file_server.enabled = true
+
+    config.assets.precompile += %w( *.svg )
+
+    # Store files locally.
+    config.active_storage.service = :local
+
   end
 end

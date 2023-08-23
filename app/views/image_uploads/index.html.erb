@@ -1,11 +1,90 @@
-<%= form_for @image_upload, html: { multipart: true } do |form| %>
-  <%= form.file_field :file %>
-
-  <%= form.submit "Upload" %>
-<% end %>
-
-<div class="image-container">
-  <% @image_uploads.each do |image_upload|%>
-    <img src="<%= image_upload.file_path %>" />
-  <% end %>
+<div class="header">
+  <h1>Upload sample media</h1>
+  <p>Your sample media is your best chance to make a great first impression.</p>
 </div>
+
+<div class="gallery-container">
+  <label class="select-images-btn">
+    <input type="file" id="img-upload" accept="image/*" multiple>
+    <div class="button-content">
+      <svg class="plus-icon" width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10.8496" y1="6.60504e-08" x2="10.8496" y2="22" stroke-width="2" />
+        <line y1="11.2222" x2="22" y2="11.2222" stroke-width="2" />
+      </svg>
+      <span>Click to upload files</span>
+    </div>
+  </label>
+  <p id="selected-file-names" class="file-name hidden"></p>
+  <button id="upload-button" class="confirm-btn hidden">Add image to gallery</button>
+
+  <div class="gallery" data-turbo-frame="image_upload" id="image-gallery">
+    <% @image_uploads.first(10).each do |image| %>
+      <div class="image-container" id="image_<%= image.id %>">
+        <%= turbo_frame_tag dom_id(image) do %>
+          <img src="<%= url_for image.file %>" />
+          <div class="image-overlay">
+            <%= button_to image, method: :delete, class: "delete-button", remote: true, data: { turbo_frame: "_top" } do %>
+              <%= image_tag "svgs/trash.svg", alt: "Delete Image", class: "delete-icon" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="bottom-text">
+  <p>Maximum of 10</p>
+</div>
+
+<script>
+document.addEventListener("turbo:load", function () {
+  const imgUpload = document.getElementById("img-upload");
+  const uploadButton = document.getElementById("upload-button");
+  const selectedFileNames = document.getElementById("selected-file-names");
+  const imageGallery = document.getElementById("image-gallery");
+
+  imgUpload.addEventListener("change", () => {
+    if (imgUpload.files.length > 0) {
+      uploadButton.classList.remove("hidden");
+      selectedFileNames.classList.remove("hidden");
+      selectedFileNames.textContent = `Selected Files: ${getSelectedFileNames()}`;
+    } else {
+      uploadButton.classList.add("hidden");
+      selectedFileNames.classList.add("hidden");
+      selectedFileNames.textContent = "";
+    }
+  });
+
+  function getSelectedFileNames() {
+    const fileNames = Array.from(imgUpload.files).map(file => file.name);
+    return fileNames.join(", ");
+  }
+
+  uploadButton.addEventListener("click", async () => {
+    alert
+    const files = imgUpload.files;
+
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append("image_upload[file]", file);
+
+      const response = await fetch("/image_uploads", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'text/vnd.turbo-stream.html',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+        }
+      });
+
+      if (response.ok) {
+        const newImageContent = await response.text();
+        const frame = imageGallery.closest("turbo-frame");
+        frame.innerHTML += newImageContent;
+      }
+    }
+  });
+});
+</script>

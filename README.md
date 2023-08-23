@@ -1,7 +1,6 @@
 # IZEA - Frontend Software Engineer Challenge
 
-As a Frontend Software Engineer at IZEA, it is preferrable to be comfortable working within the rails framework. Hence this is a skeleton rails application,
-within which you are required to complete your challenge.
+As a Frontend Software Engineer at IZEA, it is preferable to be comfortable working within the rails framework. Hence this is a skeleton rails application, within which you are required to complete your challenge.
 
 The sample application is only a sub feature in the world of content creation. Allowing end users to upload sample media as part of creating their online profile.
 
@@ -35,7 +34,7 @@ If there are any gaps in the requirements, please reach out with questions, or u
 
 - Currently the uploader uses a form submit action, however per the mocks, once a user selects a file to upload, it should upload and render in the gallery once upload is done. Think direct upload. Feel free to refactor the code and use any gems/upload frameworks.
   - Extra: Utilize Turbo Streaming to update the gallery without a full page visit.
-- Hook up the delete action on the image with a backend action that destroy's an `ImageUpload` record - cleaning up the storage of the associated file.
+- Hook up the delete action on the image with a backend action that destroys an `ImageUpload` record - cleaning up the storage of the associated file.
   - Extra: Utilize Turbo Streaming to update the gallery without a full page visit.
 
 ## Setup Instructions
@@ -64,7 +63,6 @@ The application runs on Rails 7, the following pre requisites should get the app
 
 ### Installing Postgres:
 
-- MacOS:
   - run `brew install postgresql@15`
 - Linux
 
@@ -81,7 +79,7 @@ The application runs on Rails 7, the following pre requisites should get the app
     sudo apt-get -y install postgresql-15
   ```
 
-- [https://www.postgresql.org/download/](https://www.postgresql.org/download/) for more inforamation
+- [https://www.postgresql.org/download/](https://www.postgresql.org/download/) for more information
 
 ### Installing Redis:
 
