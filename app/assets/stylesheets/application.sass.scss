@@ -15,11 +15,14 @@ $txt-primary: #000;
 $txt-secondary: #222222;
 $txt-light: #575757;
 $txt-danger: #ff0000;
+$btn-upload: #eef6f9;
+$btn-upload-txt: #44869e;
 
 @mixin center-align {
     display: grid;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 @mixin img-center {
@@ -28,11 +31,13 @@ $txt-danger: #ff0000;
     justify-items: center;
 }
 
+body {
+    font-family: $font;
+}
+
 .header {
     @include center-align;
-    text-align: center;
     margin-top: 100px;
-    font-family: $font;
     font-weight: $light;
     color: $txt-primary;
     letter-spacing: $half-space;
@@ -49,9 +54,40 @@ $txt-danger: #ff0000;
 }
 
 .gallery-container {
-    @include center-align;
+    text-align: center;
     margin-top: 40px;
     margin-bottom: 40px;
+}
+
+.select-images-btn {
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    background-color: $btn-upload;
+    color: $btn-upload-txt;
+    font-weight: $light;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    &:hover {
+        background-color: $btn-upload-txt;
+        color: $btn-upload;
+    }
+
+    &:active {
+        background-color: deepskyblue;
+    }
+}
+
+#upload-button.hidden {
+    display: none;
+}
+
+#img-upload {
+    display: none;
 }
 
 .gallery {
@@ -78,7 +114,8 @@ $txt-danger: #ff0000;
     }
 }
 
-// delete button hover
+// delete button
+
 .image-overlay {
     @include center-align;
     position: absolute;
@@ -113,10 +150,8 @@ img.delete-icon {
 
 .bottom-text {
     @include center-align;
-    text-align: center;
     margin-top: 40px;
     margin-bottom: 100px;
-    font-family: $font;
     font-weight: $light;
     font-size: $x-small;
     color: $txt-light;
